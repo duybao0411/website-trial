@@ -113,7 +113,7 @@ function list(){
   D.forEach(function(g){var ds=g.d.filter(function(d){return !k||d.n.toLowerCase().indexOf(k)>-1});if(!ds.length)return;
     o+='<h2>'+g.g+' <small>('+ds.length+' bộ thẻ)</small></h2><div class="grid">';
     ds.forEach(function(d){var s=stat(d),has=d.cards.length,pc=has?Math.round(s.learned/d.cards.length*100):0;
-      o+='<div class="deck"><span class="badge">'+d.n.replace(/.*?(HSK ?[\d-]+|\d+).*/,function(m,a){return d.n.indexOf("HSK")>-1?a:"汉"})+'</span><div class="t">'+d.n+'</div><div class="m">'+fmt(d.c)+' thẻ · '+fmt(d.u)+' học viên</div>'+
+      o+='<div class="deck"><span class="badge">'+d.n.replace(/.*?(HSK ?[\d-]+|\d+).*/,function(m,a){return d.n.indexOf("HSK")>-1?a:"汉"})+'</span><div class="t">'+d.n+'</div><div class="m">'+fmt(d.c)+' thẻ</div>'+
       (has?'<div class="pb"><i style="width:'+pc+'%"></i></div><div class="m">'+s.learned+'/'+has+' từ đã học'+(s.due?' · '+s.due+' cần ôn':'')+'</div><div class="deck-actions"><button class="btn" onclick="study(\''+d.id+'\')">Bắt đầu học</button>'+(s.learned?'<button class="btn g" onclick="learned(\''+d.id+'\',0,\'\')">Từ đã học ('+s.learned+')</button><button class="btn g" onclick="restartDeck(\''+d.id+'\')">Học lại từ đầu</button>':'')+'</div>':'<div class="m">Đang cập nhật nội dung</div><button class="btn g" disabled>Sắp có</button>')+'</div>'});
     o+='</div>'});
   document.getElementById("ls").innerHTML=o||'<p class="sub">Không tìm thấy bộ thẻ phù hợp.</p>'}
