@@ -55,6 +55,7 @@ details{border-bottom:1px solid var(--bd);padding:10px 0}summary{cursor:pointer;
 .done{text-align:center;padding:40px 10px}.done .big{font-size:56px}
 .tog{display:flex;gap:8px;justify-content:center;margin:6px 0}
 .hide{display:none!important}
+.contact-widget{position:fixed;right:20px;bottom:20px;z-index:20;display:flex;flex-direction:column;align-items:flex-end;gap:10px}.contact-panel{width:min(320px,calc(100vw - 32px));background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:16px;box-shadow:0 8px 30px rgba(0,0,0,.18)}.contact-panel[hidden]{display:none}.contact-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.contact-links{display:grid;gap:8px;margin-top:12px}.contact-link{display:block;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;text-decoration:none;color:var(--tx)}.contact-link:hover{border-color:var(--pr);color:var(--pr)}.contact-link small{color:var(--mu)}
 @media(max-width:600px){nav{display:flex;order:4;flex-basis:100%;margin-left:0}.bar{padding:8px 12px;flex-wrap:wrap}}
 </style>
 </head>
@@ -66,6 +67,17 @@ details{border-bottom:1px solid var(--bd);padding:10px 0}summary{cursor:pointer;
   <button class="ic" onclick="toggleTheme()" title="Sáng / tối" aria-label="Đổi giao diện">◐</button>
 </div></header>
 <main id="app"></main>
+<aside class="contact-widget" aria-label="Liên hệ">
+  <section id="contact-panel" class="contact-panel" aria-label="Bot liên hệ" hidden>
+    <div class="contact-head"><strong>Bot liên hệ</strong><button class="ic" type="button" onclick="toggleContact(false)" aria-label="Đóng">×</button></div>
+    <p class="sub" style="margin:8px 0 0">Xin chào! Bạn muốn liên hệ qua đâu?</p>
+    <div class="contact-links">
+      <a class="contact-link" href="https://zalo.me/0931142684" target="_blank" rel="noopener noreferrer">💬 Nhắn qua Zalo<br><small>0931142684</small></a>
+      <a class="contact-link" href="mailto:duybao465@gmail.com">✉️ Gửi email<br><small>duybao465@gmail.com</small></a>
+    </div>
+  </section>
+  <button id="contact-toggle" class="btn" type="button" aria-expanded="false" aria-controls="contact-panel" onclick="toggleContact()">🤖 Liên hệ</button>
+</aside>
 
 <script>
 var D=[
@@ -93,6 +105,7 @@ try{P=JSON.parse(localStorage.getItem("zhsrs")||"{}")}catch(e){}
 function save(){try{localStorage.setItem("zhsrs",JSON.stringify(P))}catch(e){}}
 try{var t=localStorage.getItem("zhtheme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}
 function toggleTheme(){var d=document.documentElement,dark=d.getAttribute("data-theme")==="dark"||(!d.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme:dark)").matches);var n=dark?"light":"dark";d.setAttribute("data-theme",n);try{localStorage.setItem("zhtheme",n)}catch(e){}}
+function toggleContact(force){var panel=document.getElementById("contact-panel"),button=document.getElementById("contact-toggle"),open=force===undefined?panel.hidden:force;panel.hidden=!open;button.setAttribute("aria-expanded",String(open))}
 function key(d,i){return d.id+":"+i}
 function stat(d){var n=0,due=0,now=Date.now();d.cards.forEach(function(c,i){var r=P[key(d,i)];if(r){n++;if(r.d<=now)due++}});return{learned:n,due:due}}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
