@@ -116,7 +116,7 @@ function go(v){S=null;nav(v);window.scrollTo(0,0);if(v==="home")home();else if(v
 
 function home(){
   var tot=0,lr=0,du=0;ALL.forEach(function(d){var s=stat(d);lr+=s.learned;du+=s.due});
-  var h='<h1>Học Từ Vựng Tiếng Trung</h1><p class="sub">Nắm vững từ vựng tiếng Trung với hệ thống lặp lại ngắt quãng (SRS) — chữ Hán, pinyin, nghĩa và phát âm.</p>';
+  var h='<h1>Học Từ Vựng Tiếng Trung</h1><p class="sub">Nắm vững từ vựng tiếng Trung, làm quen chữ Hán, pinyin, nghĩa và phát âm</p>';
   h+='<div class="stats"><div class="st"><b>'+lr+'</b><span>Từ đã học</span></div><div class="st"><b>'+du+'</b><span>Cần ôn hôm nay</span></div><div class="st"><b>'+ALL.filter(function(d){return d.cards.length}).length+'</b><span>Bộ thẻ khả dụng</span></div></div>';
   if(du)h+='<button class="btn" onclick="go(\'review\')">Ôn tập '+du+' từ ngay</button>';
   h+='<input class="search" id="sq" placeholder="Tìm bộ thẻ… (vd: HSK 1, y khoa)" value="'+esc(q)+'" oninput="q=this.value;list()"><div id="ls"></div>';
