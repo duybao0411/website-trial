@@ -62,7 +62,7 @@ details{border-bottom:1px solid var(--bd);padding:10px 0}summary{cursor:pointer;
 <body>
 <header><div class="bar">
   <span class="logo" onclick="go('home')">汉 TừVựng (Vocabulary)</span>
-  <nav><a id="n-home" onclick="go('home')">Từ vựng</a><a id="n-review" onclick="go('review')">Ôn tập</a><a id="n-guide" onclick="go('guide')">Hướng dẫn</a><a id="n-about" onclick="go('about')">Giới thiệu</a></nav>
+  <nav><a id="n-home" onclick="go('home')">Từ vựng</a><a id="n-review" onclick="go('review')">Quá trình</a><a id="n-guide" onclick="go('guide')">Hướng dẫn</a><a id="n-about" onclick="go('about')">Giới thiệu</a></nav>
   <span class="sp"></span>
   <button class="ic" onclick="toggleTheme()" title="Sáng / tối" aria-label="Đổi giao diện">◐</button>
 </div></header>
@@ -157,10 +157,13 @@ function study(id,onlyDue){
   d.cards.forEach(function(c,i){var r=P[key(d,i)];if(!r||r.d<=now)q2.push({d:d,i:i})});
   S={q:q2.slice(0,20),n:0,tot:0,deckName:d.n};S.tot=S.q.length;flip=false;draw()}
 function review(){
-  nav("review");var now=Date.now(),q2=[];
-  ALL.forEach(function(d){d.cards.forEach(function(c,i){var r=P[key(d,i)];if(r&&r.d<=now)q2.push({d:d,i:i})})});
-  if(!q2.length){document.getElementById("app").innerHTML='<div class="done"><div class="big">✅</div><h1>Không có từ cần ôn</h1><p class="sub">Hãy học thêm từ mới ở mục Từ vựng, hoặc quay lại sau.</p><button class="btn" onclick="go(\'home\')">Chọn bộ thẻ</button></div>';return}
-  S={q:q2.slice(0,30),n:0,tot:0,deckName:"Ôn tập hôm nay"};S.tot=S.q.length;flip=false;draw()}
+  nav("review");var decks=ALL.map(function(d){return{d:d,s:stat(d),total:d.cards.length}}).filter(function(x){return x.s.learned>0});
+  if(!decks.length){document.getElementById("app").innerHTML='<div class="done"><div class="big">📚</div><h1>Chưa có quá trình học</h1><p class="sub">Các bộ thẻ bạn bắt đầu học sẽ xuất hiện ở đây cùng tiến độ.</p><button class="btn" onclick="go(\'home\')">Khám phá bộ thẻ</button></div>';return}
+  var html='<h1>Quá trình học</h1><p class="sub">Các bộ thẻ bạn đã bắt đầu, số từ đã học và mức độ hoàn thành.</p><div class="grid">';
+  decks.forEach(function(x){var d=x.d,s=x.s,total=x.total,pc=total?Math.round(s.learned/total*100):0,complete=total>0&&s.learned>=total;
+    html+='<div class="deck"><span class="badge">'+(complete?'Hoàn thành':'Đang học')+'</span><div class="t">'+esc(d.n)+'</div><div class="pb" role="progressbar" aria-label="Tiến độ '+esc(d.n)+'" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+pc+'"><i style="width:'+pc+'%"></i></div><div class="m"><strong>'+fmt(s.learned)+' / '+fmt(total)+' từ</strong> · '+pc+'% hoàn thành</div>'+(s.due?'<div class="m">'+fmt(s.due)+' từ đến hạn ôn</div>':'')+'<div class="deck-actions">'+(!complete?'<button class="btn" onclick="study(\''+d.id+'\')">Học tiếp</button>':'')+'<button class="btn g" onclick="learned(\''+d.id+'\',0,\'\')">Xem từ đã học</button></div></div>';
+  });
+  html+='</div>';document.getElementById("app").innerHTML=html}
 function draw(){
   var a=document.getElementById("app");
   if(!S.q.length){a.innerHTML='<div class="done"><div class="big">🎉</div><h1>Hoàn thành!</h1><p class="sub">Bạn đã hoàn thành '+S.n+' lượt ôn trong "'+esc(S.deckName)+'".</p><button class="btn" onclick="go(\'home\')">Về trang từ vựng</button></div>';S=null;return}
