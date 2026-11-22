@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Học từ vựng tiếng Trung HSK 1–9 (Flashcard SRS)</title>
+<style>
+:root{--bg:#f6f7fb;--sf:#fff;--tx:#1e2433;--mu:#6b7385;--bd:#e3e6ee;--pr:#e5484d;--pr2:#fff0f0;--ok:#2f9e5b;--wa:#e8a317;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151d;--sf:#1b202b;--tx:#eceef4;--mu:#9aa3b5;--bd:#2b3242;--pr:#ff6b6f;--pr2:#2b1c20;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12151d;--sf:#1b202b;--tx:#eceef4;--mu:#9aa3b5;--bd:#2b3242;--pr:#ff6b6f;--pr2:#2b1c20;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--sf);border-bottom:1px solid var(--bd)}
+.bar{max-width:1100px;margin:auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+.logo{font-weight:800;font-size:20px;color:var(--pr);cursor:pointer}
+nav{display:flex;gap:4px;margin-left:12px;overflow-x:auto}
+nav a{padding:6px 12px;border-radius:8px;color:var(--mu);font-size:14px;white-space:nowrap;cursor:pointer}
+nav a.on{background:var(--pr2);color:var(--pr);font-weight:600}
+.sp{flex:1}
+button{font:inherit;cursor:pointer}
+.ic{background:none;border:1px solid var(--bd);color:var(--tx);border-radius:8px;padding:6px 10px}
+main{max-width:1100px;margin:auto;padding:20px 16px 60px}
+h1{font-size:clamp(24px,5vw,34px);margin:8px 0 4px}
+.sub{color:var(--mu);margin:0 0 16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0}
+.st{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:12px 14px}
+.st b{display:block;font-size:22px}.st span{color:var(--mu);font-size:13px}
+.search{width:100%;padding:11px 14px;border:1px solid var(--bd);border-radius:10px;background:var(--sf);color:var(--tx);font:inherit;margin:4px 0 8px}
+h2{font-size:19px;margin:26px 0 10px}h2 small{color:var(--mu);font-weight:400;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.deck{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.deck .t{font-weight:700}.deck .m{color:var(--mu);font-size:13px}
+.badge{align-self:flex-start;background:var(--pr2);color:var(--pr);font-weight:700;border-radius:8px;padding:2px 9px;font-size:13px}
+.pb{height:6px;background:var(--bd);border-radius:6px;overflow:hidden}.pb i{display:block;height:100%;background:var(--ok)}
+.btn{background:var(--pr);color:#fff;border:0;border-radius:10px;padding:9px 14px;font-weight:600}
+.btn.g{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+.btn[disabled]{opacity:.45;cursor:default}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:16px 18px;margin:12px 0}
+.card h3{margin:0 0 6px;font-size:16px}.card p{margin:0;color:var(--mu)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--bd);padding:8px;text-align:left}
+.sc{overflow-x:auto}
+details{border-bottom:1px solid var(--bd);padding:10px 0}summary{cursor:pointer;font-weight:600}details p{color:var(--mu);margin:6px 0 0}
+/* study */
+.top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.top .pb{flex:1;height:8px}
+.fc{perspective:1000px;margin:10px auto;max-width:560px}
+.face{background:var(--sf);border:1px solid var(--bd);border-radius:20px;min-height:min(380px,56vh);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer;gap:8px;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.han{font-size:clamp(56px,16vw,96px);line-height:1.1;font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif}
+.py{font-size:26px;color:var(--pr);font-weight:600}.vi{font-size:24px}.hint{color:var(--mu);font-size:14px}
+.rate{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:560px;margin:14px auto}
+.rate button{border:0;border-radius:12px;padding:13px 6px;color:#fff;font-weight:700}
+.rate small{display:block;font-weight:400;opacity:.9;font-size:12px}
+.done{text-align:center;padding:40px 10px}.done .big{font-size:56px}
+.tog{display:flex;gap:8px;justify-content:center;margin:6px 0}
+.hide{display:none!important}
+@media(max-width:600px){nav{display:none}.bar{padding:8px 12px}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <span class="logo" onclick="go('home')">汉 TừVựng (Vocabulary)</span>
+  <nav><a id="n-home" onclick="go('home')">Từ vựng</a><a id="n-review" onclick="go('review')">Ôn tập</a><a id="n-guide" onclick="go('guide')">Hướng dẫn</a></nav>
+  <span class="sp"></span>
+  <button class="ic" onclick="toggleTheme()" title="Sáng / tối" aria-label="Đổi giao diện">◐</button>
+</div></header>
+<main id="app"></main>
+
+<script>
+var D=[
+{g:"Từ vựng HSK 3.0",d:[
+ {id:"h1",n:"Từ vựng HSK 1 (3.0)",c:300,u:53380,w:"你好|nǐ hǎo|xin chào;谢谢|xièxie|cảm ơn;再见|zàijiàn|tạm biệt;我|wǒ|tôi;你|nǐ|bạn;他|tā|anh ấy;她|tā|cô ấy;是|shì|là;不|bù|không;好|hǎo|tốt;人|rén|người;吃|chī|ăn;喝|hē|uống;水|shuǐ|nước;学习|xuéxí|học tập;老师|lǎoshī|giáo viên;学生|xuésheng|học sinh;朋友|péngyou|bạn bè;中国|Zhōngguó|Trung Quốc;越南|Yuènán|Việt Nam;爱|ài|yêu;大|dà|to, lớn;小|xiǎo|nhỏ;多|duō|nhiều;少|shǎo|ít;今天|jīntiān|hôm nay;明天|míngtiān|ngày mai;现在|xiànzài|bây giờ;家|jiā|nhà;钱|qián|tiền;我们|wǒmen|chúng tôi;你们|nǐmen|các bạn;他们|tāmen|họ;这|zhè|này;那|nà|kia;谁|shéi|ai;什么|shénme|cái gì;哪|nǎ|nào;哪儿|nǎr|ở đâu;怎么|zěnme|thế nào;几|jǐ|mấy;有|yǒu|có;没有|méiyǒu|không có;在|zài|ở, đang;去|qù|đi;来|lái|đến;看|kàn|xem;听|tīng|nghe;说|shuō|nói;读|dú|đọc;写|xiě|viết;买|mǎi|mua;做|zuò|làm;坐|zuò|ngồi;住|zhù|ở, sống;叫|jiào|gọi, tên là;喜欢|xǐhuan|thích;想|xiǎng|muốn, nghĩ;会|huì|biết, sẽ;能|néng|có thể;一|yī|một;二|èr|hai;三|sān|ba;四|sì|bốn;五|wǔ|năm;六|liù|sáu;七|qī|bảy;八|bā|tám;九|jiǔ|chín;十|shí|mười;年|nián|năm;月|yuè|tháng;日|rì|ngày;星期|xīngqī|tuần;点|diǎn|giờ;天气|tiānqì|thời tiết;热|rè|nóng;冷|lěng|lạnh;高兴|gāoxìng|vui;对|duì|đúng;很|hěn|rất;也|yě|cũng;都|dōu|đều;和|hé|và;的|de|của;了|le|rồi;吗|ma|không (nghi vấn);呢|ne|thế;请|qǐng|mời, xin;爸爸|bàba|bố;妈妈|māma|mẹ;儿子|érzi|con trai;女儿|nǚ’ér|con gái;孩子|háizi|đứa trẻ;医生|yīshēng|bác sĩ;学校|xuéxiào|trường học;饭|fàn|cơm, bữa ăn;米饭|mǐfàn|cơm trắng;苹果|píngguǒ|táo;茶|chá|trà;菜|cài|món ăn, rau;狗|gǒu|chó;猫|māo|mèo;书|shū|sách;车|chē|xe;电话|diànhuà|điện thoại;电视|diànshì|tivi;电影|diànyǐng|phim;名字|míngzi|tên;东西|dōngxi|đồ vật;对不起|duìbuqǐ|xin lỗi;没关系|méi guānxi|không sao;不客气|bú kèqi|đừng khách sáo;早上|zǎoshang|buổi sáng sớm;上午|shàngwǔ|buổi sáng;中午|zhōngwǔ|buổi trưa;下午|xiàwǔ|buổi chiều;晚上|wǎnshang|buổi tối;昨天|zuótiān|hôm qua;去年|qùnián|năm ngoái;今年|jīnnián|năm nay;明年|míngnián|sang năm;分钟|fēnzhōng|phút;时候|shíhou|lúc, khi;上|shàng|trên;下|xià|dưới;前面|qiánmiàn|phía trước;后面|hòumiàn|phía sau;里|lǐ|trong;哥哥|gēge|anh trai;姐姐|jiějie|chị gái;弟弟|dìdi|em trai;妹妹|mèimei|em gái;先生|xiānsheng|ông, ngài;小姐|xiǎojiě|cô, tiểu thư;同学|tóngxué|bạn học;商店|shāngdiàn|cửa hàng;饭店|fàndiàn|nhà hàng;桌子|zhuōzi|cái bàn;椅子|yǐzi|cái ghế;杯子|bēizi|cái cốc;衣服|yīfu|quần áo;个|gè|cái (lượng từ);些|xiē|một vài;本|běn|quyển;岁|suì|tuổi;块|kuài|đồng (tiền);两|liǎng|hai;零|líng|số không;百|bǎi|trăm;睡觉|shuì jiào|ngủ;起床|qǐ chuáng|thức dậy;回|huí|về;开|kāi|mở, lái;打|dǎ|đánh, gọi;打电话|dǎ diànhuà|gọi điện;给|gěi|cho;问|wèn|hỏi;找|zhǎo|tìm;用|yòng|dùng;玩|wán|chơi;走|zǒu|đi bộ;笑|xiào|cười;认识|rènshi|quen biết;等|děng|đợi;进|jìn|vào;出|chū|ra;站|zhàn|đứng;看见|kànjiàn|nhìn thấy;洗|xǐ|rửa;穿|chuān|mặc;好吃|hǎochī|ngon;好看|hǎokàn|dễ nhìn;高|gāo|cao;太|tài|quá;非常|fēicháng|vô cùng;最|zuì|nhất;没|méi|không (đã);别|bié|đừng;先|xiān|trước;每|měi|mỗi;每天|měitiān|mỗi ngày;水果|shuǐguǒ|trái cây;面条|miàntiáo|mì sợi;面包|miànbāo|bánh mì;鸡蛋|jīdàn|trứng gà;牛奶|niúnǎi|sữa bò;鱼|yú|cá;肉|ròu|thịt;雨|yǔ|mưa;下雨|xià yǔ|trời mưa;北京|Běijīng|Bắc Kinh;美国|Měiguó|nước Mỹ;手|shǒu|tay;男|nán|nam;女|nǚ|nữ;这儿|zhèr|ở đây;那儿|nàr|ở đó;这里|zhèlǐ|ở đây;那里|nàlǐ|ở kia;这个|zhège|cái này;那个|nàge|cái kia;多少|duōshao|bao nhiêu;为什么|wèishénme|tại sao;怎么样|zěnmeyàng|thế nào;汉语|Hànyǔ|tiếng Hán;英语|Yīngyǔ|tiếng Anh;字|zì|chữ;课|kè|bài học;电脑|diànnǎo|máy tính"},
+ {id:"h2",n:"Từ vựng HSK 2 (3.0)",c:200,u:24241,w:"工作|gōngzuò|công việc;医院|yīyuàn|bệnh viện;觉得|juéde|cảm thấy;知道|zhīdào|biết;告诉|gàosu|nói cho biết;公司|gōngsī|công ty;咖啡|kāfēi|cà phê;手机|shǒujī|điện thoại;旅游|lǚyóu|du lịch;便宜|piányi|rẻ;贵|guì|đắt;漂亮|piàoliang|đẹp;快乐|kuàilè|vui vẻ;考试|kǎoshì|kỳ thi;问题|wèntí|câu hỏi, vấn đề;开始|kāishǐ|bắt đầu;帮助|bāngzhù|giúp đỡ;上班|shàng bān|đi làm;下班|xià bān|tan làm;休息|xiūxi|nghỉ ngơi;运动|yùndòng|thể thao;游泳|yóuyǒng|bơi;跑步|pǎobù|chạy bộ;唱歌|chàng gē|hát;跳舞|tiào wǔ|nhảy múa;生日|shēngrì|sinh nhật;礼物|lǐwù|quà;身体|shēntǐ|cơ thể;头|tóu|đầu;眼睛|yǎnjing|mắt;生病|shēng bìng|bị ốm;药|yào|thuốc;外面|wàimiàn|bên ngoài;旁边|pángbiān|bên cạnh;离|lí|cách;从|cóng|từ;到|dào|đến;一起|yìqǐ|cùng nhau;已经|yǐjīng|đã;还|hái|còn;再|zài|lại;因为|yīnwèi|bởi vì;所以|suǒyǐ|cho nên;但是|dànshì|nhưng;可以|kěyǐ|có thể;应该|yīnggāi|nên;希望|xīwàng|hy vọng;路|lù|đường;车站|chēzhàn|trạm xe;飞机|fēijī|máy bay;火车|huǒchē|tàu hỏa;出租车|chūzūchē|taxi;颜色|yánsè|màu sắc;红|hóng|đỏ;白|bái|trắng;新|xīn|mới;旧|jiù|cũ;长|cháng|dài;远|yuǎn|xa;近|jìn|gần;慢|màn|chậm;快|kuài|nhanh;忙|máng|bận;累|lèi|mệt"},
+ {id:"h3",n:"Từ vựng HSK 3 (3.0)",c:500,u:23337,w:"爱好|àihào|sở thích;安静|ānjìng|yên tĩnh;参加|cānjiā|tham gia;城市|chéngshì|thành phố;成绩|chéngjì|thành tích;迟到|chídào|đến muộn;重要|zhòngyào|quan trọng;出发|chūfā|xuất phát;打算|dǎsuan|dự định;大家|dàjiā|mọi người;担心|dānxīn|lo lắng;当然|dāngrán|đương nhiên;地方|dìfang|nơi chốn;地铁|dìtiě|tàu điện ngầm;发现|fāxiàn|phát hiện;方便|fāngbiàn|tiện lợi;干净|gānjìng|sạch sẽ;感冒|gǎnmào|cảm lạnh;关系|guānxì|quan hệ;关心|guānxīn|quan tâm;国家|guójiā|quốc gia;害怕|hàipà|sợ;好像|hǎoxiàng|dường như;后来|hòulái|sau đó;欢迎|huānyíng|chào mừng;会议|huìyì|cuộc họp;机会|jīhuì|cơ hội;检查|jiǎnchá|kiểm tra;简单|jiǎndān|đơn giản;健康|jiànkāng|sức khỏe;交通|jiāotōng|giao thông;结婚|jié hūn|kết hôn;结束|jiéshù|kết thúc;经常|jīngcháng|thường xuyên;经理|jīnglǐ|giám đốc;决定|juédìng|quyết định;满意|mǎnyì|hài lòng;目的|mùdì|mục đích;努力|nǔlì|nỗ lực;为了|wèile|để, nhằm;完成|wánchéng|hoàn thành;习惯|xíguàn|thói quen;相信|xiāngxìn|tin tưởng;影响|yǐngxiǎng|ảnh hưởng"},{id:"h4",n:"Từ vựng HSK 4 (3.0)",c:1000,u:18337},
+ {id:"h5",n:"Từ vựng HSK 5 (3.0)",c:1600,u:11731},{id:"h6",n:"Từ vựng HSK 6 (3.0)",c:1800,u:7582},{id:"h79",n:"Từ vựng HSK 7-9 (3.0)",c:5158,u:6498}]},
+{g:"Từ vựng tiếng Trung thông dụng",d:[
+ {id:"k300",n:"300 từ vựng giao tiếp thông dụng",c:343,u:2491,w:"对不起|duìbuqǐ|xin lỗi;没关系|méi guānxi|không sao;请问|qǐngwèn|xin hỏi;多少钱|duōshao qián|bao nhiêu tiền;太贵了|tài guì le|đắt quá;我不明白|wǒ bù míngbai|tôi không hiểu;慢一点|màn yìdiǎn|chậm một chút;请再说一遍|qǐng zài shuō yí biàn|xin nói lại lần nữa;你叫什么名字|nǐ jiào shénme míngzi|bạn tên là gì;很高兴认识你|hěn gāoxìng rènshi nǐ|rất vui được gặp bạn;加油|jiāyóu|cố lên;干杯|gānbēi|cạn ly;厕所在哪里|cèsuǒ zài nǎlǐ|nhà vệ sinh ở đâu"},
+ {id:"k1000",n:"1000 từ vựng tiếng Trung cơ bản",c:1000,u:4093}]},
+{g:"Giáo trình HSK chuẩn",d:[
+ {id:"s1",n:"HSK 1 Giáo trình chuẩn",c:197,u:3184},{id:"s2",n:"HSK 2 Giáo trình chuẩn",c:174,u:1475},{id:"s3",n:"HSK 3 Giáo trình chuẩn",c:356,u:2542},
+ {id:"s4",n:"HSK 4 Giáo trình chuẩn",c:721,u:3034},{id:"s5",n:"HSK 5 Giáo trình chuẩn",c:1440,u:2432},{id:"s6",n:"HSK 6 Giáo trình chuẩn",c:1960,u:788}]},
+{g:"Giáo trình Hán ngữ",d:[
+ {id:"q1",n:"Giáo trình Hán ngữ quyển 1",c:327,u:3775},{id:"q2",n:"Giáo trình Hán ngữ quyển 2",c:454,u:1694},{id:"q3",n:"Giáo trình Hán ngữ quyển 3",c:385,u:1230},
+ {id:"q4",n:"Giáo trình Hán ngữ quyển 4",c:383,u:819},{id:"q5",n:"Giáo trình Hán ngữ quyển 5",c:578,u:491},{id:"q6",n:"Giáo trình Hán ngữ quyển 6",c:828,u:191}]},
+{g:"Từ vựng chuyên ngành",d:[
+ {id:"it",n:"Chuyên ngành công nghệ thông tin",c:134,u:309,w:"电脑|diànnǎo|máy tính;软件|ruǎnjiàn|phần mềm;网络|wǎngluò|mạng;数据|shùjù|dữ liệu;密码|mìmǎ|mật khẩu;程序|chéngxù|chương trình;服务器|fúwùqì|máy chủ;人工智能|réngōng zhìnéng|trí tuệ nhân tạo;下载|xiàzǎi|tải xuống;文件|wénjiàn|tệp"},
+ {id:"med",n:"Chuyên ngành y khoa",c:117,u:388},{id:"log",n:"Chuyên ngành logistics",c:97,u:989},{id:"mkt",n:"Chuyên ngành marketing",c:92,u:347},
+ {id:"acc",n:"Chuyên ngành kế toán",c:109,u:417},{id:"fas",n:"Chuyên ngành thời trang",c:139,u:221},{id:"imp",n:"Chuyên ngành xuất nhập khẩu",c:96,u:576}]}];
+var ALL=[];D.forEach(function(g){g.d.forEach(function(x){x.cards=(x.w||"").split(";").filter(Boolean).map(function(s){var p=s.split("|");return{h:p[0],p:p[1],v:p[2]}});ALL.push(x)})});
+var DAY=864e5,STEP=[0,1,3,7,14,30,60],P={},S=null,flip=false,mode="han",q="";
+try{P=JSON.parse(localStorage.getItem("zhsrs")||"{}")}catch(e){}
+function save(){try{localStorage.setItem("zhsrs",JSON.stringify(P))}catch(e){}}
+try{var t=localStorage.getItem("zhtheme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}
+function toggleTheme(){var d=document.documentElement,dark=d.getAttribute("data-theme")==="dark"||(!d.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme:dark)").matches);var n=dark?"light":"dark";d.setAttribute("data-theme",n);try{localStorage.setItem("zhtheme",n)}catch(e){}}
+function key(d,i){return d.id+":"+i}
+function stat(d){var n=0,due=0,now=Date.now();d.cards.forEach(function(c,i){var r=P[key(d,i)];if(r){n++;if(r.d<=now)due++}});return{learned:n,due:due}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function fmt(n){return n.toLocaleString("vi-VN")}
+function speak(t){try{var u=new SpeechSynthesisUtterance(t);u.lang="zh-CN";u.rate=.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function nav(a){["home","review","guide"].forEach(function(x){var e=document.getElementById("n-"+x);if(e)e.className=x===a?"on":""})}
+function go(v){S=null;nav(v);window.scrollTo(0,0);if(v==="home")home();else if(v==="review")review();else guide()}
+
+function home(){
+  var tot=0,lr=0,du=0;ALL.forEach(function(d){var s=stat(d);lr+=s.learned;du+=s.due});
+  var h='<h1>Học Từ Vựng Tiếng Trung</h1><p class="sub">Nắm vững từ vựng tiếng Trung với hệ thống lặp lại ngắt quãng (SRS) — chữ Hán, pinyin, nghĩa và phát âm.</p>';
+  h+='<div class="stats"><div class="st"><b>'+lr+'</b><span>Từ đã học</span></div><div class="st"><b>'+du+'</b><span>Cần ôn hôm nay</span></div><div class="st"><b>'+ALL.filter(function(d){return d.cards.length}).length+'</b><span>Bộ thẻ khả dụng</span></div></div>';
+  if(du)h+='<button class="btn" onclick="go(\'review\')">Ôn tập '+du+' từ ngay</button>';
+  h+='<input class="search" id="sq" placeholder="Tìm bộ thẻ… (vd: HSK 1, y khoa)" value="'+esc(q)+'" oninput="q=this.value;list()"><div id="ls"></div>';
+  h+=info();document.getElementById("app").innerHTML=h;list()}
+function list(){
+  var o="",k=q.trim().toLowerCase();
+  D.forEach(function(g){var ds=g.d.filter(function(d){return !k||d.n.toLowerCase().indexOf(k)>-1});if(!ds.length)return;
+    o+='<h2>'+g.g+' <small>('+ds.length+' bộ thẻ)</small></h2><div class="grid">';
+    ds.forEach(function(d){var s=stat(d),has=d.cards.length,pc=has?Math.round(s.learned/d.cards.length*100):0;
+      o+='<div class="deck"><span class="badge">'+d.n.replace(/.*?(HSK ?[\d-]+|\d+).*/,function(m,a){return d.n.indexOf("HSK")>-1?a:"汉"})+'</span><div class="t">'+d.n+'</div><div class="m">'+fmt(d.c)+' thẻ · '+fmt(d.u)+' học viên</div>'+
+      (has?'<div class="pb"><i style="width:'+pc+'%"></i></div><div class="m">'+s.learned+'/'+has+' từ đã học'+(s.due?' · '+s.due+' cần ôn':'')+'</div><button class="btn" onclick="study(\''+d.id+'\')">Bắt đầu học</button>':'<div class="m">Đang cập nhật nội dung</div><button class="btn g" disabled>Sắp có</button>')+'</div>'});
+    o+='</div>'});
+  document.getElementById("ls").innerHTML=o||'<p class="sub">Không tìm thấy bộ thẻ phù hợp.</p>'}
+
+function study(id,onlyDue){
+  var d=ALL.filter(function(x){return x.id===id})[0],now=Date.now(),q2=[];
+  d.cards.forEach(function(c,i){var r=P[key(d,i)];if(!r||r.d<=now)q2.push({d:d,i:i})});
+  S={q:q2.slice(0,20),n:0,tot:0,deckName:d.n};S.tot=S.q.length;flip=false;draw()}
+function review(){
+  nav("review");var now=Date.now(),q2=[];
+  ALL.forEach(function(d){d.cards.forEach(function(c,i){var r=P[key(d,i)];if(r&&r.d<=now)q2.push({d:d,i:i})})});
+  if(!q2.length){document.getElementById("app").innerHTML='<div class="done"><div class="big">✅</div><h1>Không có từ cần ôn</h1><p class="sub">Hãy học thêm từ mới ở mục Từ vựng, hoặc quay lại sau.</p><button class="btn" onclick="go(\'home\')">Chọn bộ thẻ</button></div>';return}
+  S={q:q2.slice(0,30),n:0,tot:0,deckName:"Ôn tập hôm nay"};S.tot=S.q.length;flip=false;draw()}
+function draw(){
+  var a=document.getElementById("app");
+  if(!S.q.length){a.innerHTML='<div class="done"><div class="big">🎉</div><h1>Hoàn thành!</h1><p class="sub">Bạn đã hoàn thành '+S.n+' lượt ôn trong "'+esc(S.deckName)+'".</p><button class="btn" onclick="go(\'home\')">Về trang từ vựng</button></div>';S=null;return}
+  var it=S.q[0],c=it.d.cards[it.i],pc=Math.round(S.n/(S.n+S.q.length)*100);
+  var front=mode==="han"?'<div class="han">'+c.h+'</div><div class="hint">Chạm để lật thẻ</div>':'<div class="vi">'+c.v+'</div><div class="hint">Chạm để lật thẻ</div>';
+  var back='<div class="han" style="font-size:'+(c.h.length>3?44:64)+'px">'+c.h+'</div><div class="py">'+c.p+'</div><div class="vi">'+c.v+'</div>';
+  a.innerHTML='<div class="top"><button class="ic" onclick="go(\'home\')">←</button><div class="pb"><i style="width:'+pc+'%"></i></div><span class="hint">'+S.q.length+' còn lại</span></div>'+
+   '<div class="tog"><button class="btn g" onclick="setMode(\'han\')" '+(mode==="han"?'style="border-color:var(--pr);color:var(--pr)"':'')+'>Hán → Việt</button><button class="btn g" onclick="setMode(\'vi\')" '+(mode==="vi"?'style="border-color:var(--pr);color:var(--pr)"':'')+'>Việt → Hán</button></div>'+
+   '<div class="fc"><div class="face" onclick="doFlip()">'+(flip?back:front)+(flip?'<button class="ic" onclick="event.stopPropagation();speak(\''+c.h+'\')">🔊 Nghe</button>':'')+'</div></div>'+
+   (flip?'<div class="rate"><button style="background:#e5484d" onclick="rate(0)">Quên<small>Học lại</small></button><button style="background:#e8a317" onclick="rate(1)">Khó<small>1 ngày</small></button><button style="background:#2f9e5b" onclick="rate(2)">Nhớ<small>Lâu hơn</small></button></div>':'<p class="hint" style="text-align:center">Nhớ nghĩa trong đầu rồi lật thẻ để kiểm tra.</p>');
+  if(flip&&mode==="han"&&0)speak(c.h)}
+function doFlip(){flip=true;var it=S.q[0];if(mode==="han")speak(it.d.cards[it.i].h);draw()}
+function setMode(m){mode=m;flip=false;draw()}
+function rate(r){
+  var it=S.q.shift(),k=key(it.d,it.i),cur=P[k]||{b:0},now=Date.now();
+  if(r===0){cur.b=0;cur.d=now;S.q.push(it)}
+  else if(r===1){cur.d=now+DAY;S.n++}
+  else{cur.b=Math.min(cur.b+1,STEP.length-1);cur.d=now+STEP[cur.b]*DAY;S.n++}
+  if(r===0&&!P[k])P[k]=cur;P[k]=cur;
+  if(r>0&&cur.b===0&&r===2)cur.b=1,cur.d=now+DAY;
+  save();flip=false;draw()}
+
+function info(){return '<div class="card"><h3>Lặp lại ngắt quãng (Spaced Repetition) là gì?</h3><p>Mỗi từ được ôn lại đúng lúc bạn sắp quên, dựa trên đường cong lãng quên của Ebbinghaus. Với tiếng Trung, bạn cần nhớ đồng thời mặt chữ Hán, pinyin kèm thanh điệu và nghĩa — SRS giúp nhớ lâu với ít lần ôn hơn.</p></div>'+
+ '<div class="card"><h3>Từ vựng theo cấp HSK 3.0</h3><div class="sc"><table><tr><th>Cấp độ</th><th>Số từ</th><th>Mục tiêu</th></tr><tr><td>HSK 1</td><td>300</td><td>Chào hỏi, số đếm, giao tiếp cơ bản</td></tr><tr><td>HSK 2</td><td>200</td><td>Câu đơn giản đời thường</td></tr><tr><td>HSK 3</td><td>500</td><td>Sinh hoạt, học tập, công việc</td></tr><tr><td>HSK 4</td><td>1000</td><td>Thảo luận nhiều chủ đề</td></tr><tr><td>HSK 5</td><td>1600</td><td>Đọc báo, xem phim</td></tr><tr><td>HSK 6</td><td>1800</td><td>Gần như bản xứ</td></tr><tr><td>HSK 7–9</td><td>~5000</td><td>Học thuật, chuyên sâu</td></tr></table></div></div>'+
+ '<div class="card"><h3>Câu hỏi thường gặp</h3><details><summary>Mỗi ngày nên học bao nhiêu từ?</summary><p>10–20 từ mới mỗi ngày kết hợp ôn từ cũ là hợp lý. Quan trọng là đều đặn.</p></details><details><summary>Học theo cấp HSK hay theo chủ đề?</summary><p>Ôn thi thì học theo cấp; giao tiếp hoặc công việc thì học theo chủ đề, chuyên ngành.</p></details><details><summary>Có cần nhớ chữ Hán không?</summary><p>Có. Pinyin giúp phát âm, nhưng đọc, viết và thi HSK cần nhớ mặt chữ.</p></details></div>'}
+function guide(){document.getElementById("app").innerHTML='<h1>Hướng dẫn</h1><p class="sub">Cách học hiệu quả</p><div class="card"><h3>1. Chọn bộ thẻ</h3><p>Vào mục Từ vựng, chọn bộ thẻ rồi bấm Bắt đầu học.</p></div><div class="card"><h3>2. Lật thẻ và tự đánh giá</h3><p>Nhớ nghĩa trước, lật thẻ, rồi chọn Quên / Khó / Nhớ. Từ càng nhớ chắc thì khoảng cách ôn càng dài (1, 3, 7, 14, 30 ngày…).</p></div><div class="card"><h3>3. Ôn tập mỗi ngày</h3><p>Mở mục Ôn tập để xem các từ đến hạn. Tiến độ được lưu ngay trên thiết bị của bạn.</p></div><div class="card"><h3>Mẹo</h3><p>Bấm nút Nghe để luyện phát âm, và đổi chế độ Việt → Hán để luyện nhớ mặt chữ.</p></div>'}
+go("home");
+</script>
+</body>
+</html>
