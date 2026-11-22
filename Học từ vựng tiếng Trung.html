@@ -30,6 +30,7 @@ h2{font-size:19px;margin:26px 0 10px}h2 small{color:var(--mu);font-weight:400;fo
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
 .deck{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px}
 .deck .t{font-weight:700}.deck .m{color:var(--mu);font-size:13px}
+.deck-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}.deck-actions .btn{font-size:13px;padding:8px 10px}
 .badge{align-self:flex-start;background:var(--pr2);color:var(--pr);font-weight:700;border-radius:8px;padding:2px 9px;font-size:13px}
 .pb{height:6px;background:var(--bd);border-radius:6px;overflow:hidden}.pb i{display:block;height:100%;background:var(--ok)}
 .btn{background:var(--pr);color:#fff;border:0;border-radius:10px;padding:9px 14px;font-weight:600}
@@ -113,9 +114,30 @@ function list(){
     o+='<h2>'+g.g+' <small>('+ds.length+' bộ thẻ)</small></h2><div class="grid">';
     ds.forEach(function(d){var s=stat(d),has=d.cards.length,pc=has?Math.round(s.learned/d.cards.length*100):0;
       o+='<div class="deck"><span class="badge">'+d.n.replace(/.*?(HSK ?[\d-]+|\d+).*/,function(m,a){return d.n.indexOf("HSK")>-1?a:"汉"})+'</span><div class="t">'+d.n+'</div><div class="m">'+fmt(d.c)+' thẻ · '+fmt(d.u)+' học viên</div>'+
-      (has?'<div class="pb"><i style="width:'+pc+'%"></i></div><div class="m">'+s.learned+'/'+has+' từ đã học'+(s.due?' · '+s.due+' cần ôn':'')+'</div><button class="btn" onclick="study(\''+d.id+'\')">Bắt đầu học</button>':'<div class="m">Đang cập nhật nội dung</div><button class="btn g" disabled>Sắp có</button>')+'</div>'});
+      (has?'<div class="pb"><i style="width:'+pc+'%"></i></div><div class="m">'+s.learned+'/'+has+' từ đã học'+(s.due?' · '+s.due+' cần ôn':'')+'</div><div class="deck-actions"><button class="btn" onclick="study(\''+d.id+'\')">Bắt đầu học</button>'+(s.learned?'<button class="btn g" onclick="learned(\''+d.id+'\',0,\'\')">Từ đã học ('+s.learned+')</button><button class="btn g" onclick="restartDeck(\''+d.id+'\')">Học lại từ đầu</button>':'')+'</div>':'<div class="m">Đang cập nhật nội dung</div><button class="btn g" disabled>Sắp có</button>')+'</div>'});
     o+='</div>'});
   document.getElementById("ls").innerHTML=o||'<p class="sub">Không tìm thấy bộ thẻ phù hợp.</p>'}
+
+function learned(id,page,term){
+  var d=ALL.filter(function(x){return x.id===id})[0];if(!d)return;
+  term=term===undefined?(d.learnedQuery||""):term;d.learnedQuery=term;
+  var entries=[],needle=term.trim().toLowerCase();
+  d.cards.forEach(function(c,i){var r=P[key(d,i)];if(r&&(!needle||(c.h+" "+c.p+" "+c.v).toLowerCase().indexOf(needle)>-1))entries.push({c:c,r:r})});
+  var per=50,pages=Math.max(1,Math.ceil(entries.length/per));page=Math.max(0,Math.min(page||0,pages-1));
+  var shown=entries.slice(page*per,(page+1)*per),html='<div class="top"><button class="ic" onclick="go(\'home\')">← Bộ thẻ</button></div><h1>Từ đã học · '+esc(d.n)+'</h1><p class="sub">'+entries.length+' từ đã học'+(needle?' phù hợp với tìm kiếm':'')+'. Tiến độ ôn tập được lưu riêng cho bộ thẻ này.</p>';
+  html+='<div class="deck-actions" style="margin:10px 0 14px"><button class="btn g" onclick="go(\'home\')">Quay lại danh sách</button><button class="btn g" onclick="restartDeck(\''+d.id+'\')">Học lại từ đầu</button></div>';
+  html+='<input class="search" placeholder="Tìm chữ Hán, pinyin hoặc nghĩa…" value="'+esc(term)+'" oninput="learned(\''+d.id+'\',0,this.value)"><div class="card"><div class="sc"><table><thead><tr><th>Từ</th><th>Pinyin</th><th>Nghĩa</th><th>Ôn tập</th></tr></thead><tbody>';
+  if(!shown.length)html+='<tr><td colspan="4">'+(entries.length?'Không có từ phù hợp.':'Bộ thẻ này chưa có từ đã học.')+'</td></tr>';
+  shown.forEach(function(x){html+='<tr><td><strong>'+esc(x.c.h)+'</strong></td><td>'+esc(x.c.p)+'</td><td>'+esc(x.c.v)+'</td><td>'+(x.r.d<=Date.now()?'Đến hạn':'Ôn lại '+new Date(x.r.d).toLocaleDateString('vi-VN'))+'</td></tr>'});
+  html+='</tbody></table></div><div class="deck-actions" style="justify-content:space-between;margin-top:12px"><button class="btn g" '+(page===0?'disabled':'')+' onclick="learned(\''+d.id+'\','+(page-1)+')">← Trước</button><span class="hint">Trang '+(page+1)+' / '+pages+'</span><button class="btn g" '+(page+1>=pages?'disabled':'')+' onclick="learned(\''+d.id+'\','+(page+1)+')">Sau →</button></div></div>';
+  document.getElementById("app").innerHTML=html;window.scrollTo(0,0)
+}
+function restartDeck(id){
+  var d=ALL.filter(function(x){return x.id===id})[0];if(!d)return;
+  var s=stat(d);if(!s.learned){study(id);return}
+  if(!confirm('Xóa toàn bộ tiến độ học của bộ "'+d.n+'" và học lại từ đầu? Thao tác này không thể hoàn tác.'))return;
+  var prefix=id+":";Object.keys(P).forEach(function(k){if(k.indexOf(prefix)===0)delete P[k]});save();d.learnedQuery="";go("home");study(id)
+}
 
 function study(id,onlyDue){
   var d=ALL.filter(function(x){return x.id===id})[0],now=Date.now(),q2=[];
@@ -151,8 +173,8 @@ function rate(r){
 function info(){return '<div class="card"><h3>Lặp lại ngắt quãng (Spaced Repetition) là gì?</h3><p>Mỗi từ được ôn lại đúng lúc bạn sắp quên, dựa trên đường cong lãng quên của Ebbinghaus. Với tiếng Trung, bạn cần nhớ đồng thời mặt chữ Hán, pinyin kèm thanh điệu và nghĩa — SRS giúp nhớ lâu với ít lần ôn hơn.</p></div>'+
  '<div class="card"><h3>Từ vựng theo cấp HSK 3.0</h3><div class="sc"><table><tr><th>Cấp độ</th><th>Số từ</th><th>Mục tiêu</th></tr><tr><td>HSK 1</td><td>300</td><td>Chào hỏi, số đếm, giao tiếp cơ bản</td></tr><tr><td>HSK 2</td><td>200</td><td>Câu đơn giản đời thường</td></tr><tr><td>HSK 3</td><td>500</td><td>Sinh hoạt, học tập, công việc</td></tr><tr><td>HSK 4</td><td>1000</td><td>Thảo luận nhiều chủ đề</td></tr><tr><td>HSK 5</td><td>1600</td><td>Đọc báo, xem phim</td></tr><tr><td>HSK 6</td><td>1800</td><td>Gần như bản xứ</td></tr><tr><td>HSK 7–9</td><td>~5000</td><td>Học thuật, chuyên sâu</td></tr></table></div></div>'+
  '<div class="card"><h3>Câu hỏi thường gặp</h3><details><summary>Mỗi ngày nên học bao nhiêu từ?</summary><p>10–20 từ mới mỗi ngày kết hợp ôn từ cũ là hợp lý. Quan trọng là đều đặn.</p></details><details><summary>Học theo cấp HSK hay theo chủ đề?</summary><p>Ôn thi thì học theo cấp; giao tiếp hoặc công việc thì học theo chủ đề, chuyên ngành.</p></details><details><summary>Có cần nhớ chữ Hán không?</summary><p>Có. Pinyin giúp phát âm, nhưng đọc, viết và thi HSK cần nhớ mặt chữ.</p></details></div>'}
-function guide(){document.getElementById("app").innerHTML='<h1>Hướng dẫn</h1><p class="sub">Cách học hiệu quả</p><div class="card"><h3>1. Chọn bộ thẻ</h3><p>Vào mục Từ vựng, chọn bộ thẻ rồi bấm Bắt đầu học.</p></div><div class="card"><h3>2. Lật thẻ và tự đánh giá</h3><p>Nhớ nghĩa trước, lật thẻ, rồi chọn Quên / Khó / Nhớ. Từ càng nhớ chắc thì khoảng cách ôn càng dài (1, 3, 7, 14, 30 ngày…).</p></div><div class="card"><h3>3. Ôn tập mỗi ngày</h3><p>Mở mục Ôn tập để xem các từ đến hạn. Tiến độ được lưu ngay trên thiết bị của bạn.</p></div><div class="card"><h3>Mẹo</h3><p>Bấm nút Nghe để luyện phát âm, và đổi chế độ Việt → Hán để luyện nhớ mặt chữ.</p></div>'}
-function about(){document.getElementById("app").innerHTML='<div class="profile"><img class="profile-photo" src="https://avatars.githubusercontent.com/u/209735350?v=4&amp;size=240" alt="Ảnh đại diện GitHub của Nguyễn Vũ Duy Bảo"><div><p class="eyebrow">GIỚI THIỆU</p><h1>Nguyễn Vũ Duy Bảo</h1><p class="sub">Người xây dựng dự án Tự Học Tiếng Trung</p></div></div><div class="card"><h3>Xin chào!</h3><p>Mình là Nguyễn Vũ Duy Bảo. Mình đang xây dựng Tự Học Tiếng Trung để việc học từ vựng trở nên dễ tiếp cận và đều đặn hơn.</p></div><div class="card"><h3>Về dự án</h3><p>Website có các bộ từ vựng theo cấp HSK và chủ đề, thẻ học gồm chữ Hán, pinyin và nghĩa tiếng Việt, cùng tính năng ôn tập lặp lại ngắt quãng (SRS).</p></div><div class="card"><h3>Mục tiêu</h3><p>Tiếp tục hoàn thiện nội dung và công cụ học để người học có thể luyện từ mới, ôn tập và theo dõi tiến độ ngay trên trình duyệt.</p></div>'}
+function guide(){document.getElementById("app").innerHTML='<h1>Hướng dẫn</h1><p class="sub">Cách học hiệu quả</p><div class="card"><h3>1. Chọn bộ thẻ</h3><p>Vào mục Từ vựng, chọn bộ thẻ rồi bấm Bắt đầu học.</p></div><div class="card"><h3>2. Lật thẻ và tự đánh giá</h3><p>Nhớ nghĩa trước, lật thẻ, rồi chọn Quên / Khó / Nhớ. Từ càng nhớ chắc thì khoảng cách ôn càng dài (1, 3, 7, 14, 30 ngày…).</p></div><div class="card"><h3>3. Ôn tập mỗi ngày</h3><p>Mở mục Ôn tập để xem các từ đến hạn. Tiến độ được lưu ngay trên thiết bị của bạn.</p></div><div class="card"><h3>4. Xem và làm lại từng bộ</h3><p>Trong thẻ bộ từ, chọn Từ đã học để xem danh sách. Chọn Học lại từ đầu để xóa tiến độ riêng của bộ đó và bắt đầu lại.</p></div><div class="card"><h3>Mẹo</h3><p>Bấm nút Nghe để luyện phát âm, và đổi chế độ Việt → Hán để luyện nhớ mặt chữ.</p></div>'}
+function about(){document.getElementById("app").innerHTML='<div class="profile"><img class="profile-photo" src="https://avatars.githubusercontent.com/u/209735350?v=4&amp;size=240" alt="Ảnh đại diện GitHub của Nguyễn Vũ Duy Bảo"><div><p class="eyebrow">GIỚI THIỆU</p><h1>Nguyễn Vũ Duy Bảo</h1><p class="sub">Người xây dựng dự án Tự Học Tiếng Trung</p></div></div><div class="card"><h3>Xin chào - 大家好 !</h3><p>Mình là Nguyễn Vũ Duy Bảo. Mình đang xây dựng Tự Học Tiếng Trung để việc học từ vựng trở nên dễ dàng tiếp cận và có thể được học đều đặn hơn.</p></div><div class="card"><h3>Về dự án</h3><p>Website có các bộ từ vựng theo cấp HSK và chủ đề, thẻ học gồm chữ Hán, pinyin và nghĩa tiếng Việt, cùng tính năng ôn tập lặp lại ngắt quãng nhằm học hiệu quả hơn.</p></div><div class="card"><h3>Mục tiêu</h3><p>Tiếp tục hoàn thiện nội dung và công cụ học để người học có thể luyện từ mới, ôn tập và theo dõi tiến độ ngay trên trình duyệt.</p></div>'}
 go("home");
 </script>
 </body>
