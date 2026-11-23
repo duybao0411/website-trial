@@ -120,7 +120,9 @@ function home(){
   h+='<div class="stats"><div class="st"><b>'+lr+'</b><span>Từ đã học</span></div><div class="st"><b>'+du+'</b><span>Cần ôn hôm nay</span></div><div class="st"><b>'+ALL.filter(function(d){return d.cards.length}).length+'</b><span>Bộ thẻ khả dụng</span></div></div>';
   if(du)h+='<button class="btn" onclick="go(\'review\')">Ôn tập '+du+' từ ngay</button>';
   h+='<input class="search" id="sq" placeholder="Tìm bộ thẻ… (vd: HSK 1, y khoa)" value="'+esc(q)+'" oninput="q=this.value;list()"><div id="ls"></div>';
-  h+=info();document.getElementById("app").innerHTML=h;list()}
+  h+=info();var monthKey=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Ho_Chi_Minh",year:"numeric",month:"2-digit"}).format(new Date());
+  h+='<div class="card" style="text-align:center"><h3>Lượt truy cập tháng '+monthKey+'</h3><div class="counterapi" style="min-height:44px" ns="tuhoctiengtrung.io.vn" action="view" key="home-'+monthKey+'" label="lượt truy cập"></div></div>';
+  document.getElementById("app").innerHTML=h;list();var counterScript=document.createElement("script");counterScript.src="https://counterapi.com/c.js";counterScript.async=true;document.body.appendChild(counterScript)}
 function list(){
   var o="",k=q.trim().toLowerCase();
   D.forEach(function(g){var ds=g.d.filter(function(d){return !k||d.n.toLowerCase().indexOf(k)>-1});if(!ds.length)return;
